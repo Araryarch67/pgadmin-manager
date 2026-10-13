@@ -1,0 +1,15 @@
+[package]
+name = "pgadmin-manager"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gpui = "0.2.2"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+anyhow = "1"
+
+[patch.crates-io]
+# Patch lokal: xattr 0.2.3 (transitif gpui -> zed-async-tar) gagal build dengan
+# libc baru (ENOATTR dihapus). Vendor + fallback ke ENODATA di Linux.
+xattr = { path = "vendor/xattr" }
